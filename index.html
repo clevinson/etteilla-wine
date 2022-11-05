@@ -36,7 +36,7 @@
       }
       50% {
         background-size: 102%;
-        background-position: 49% 55%;
+        background-position: center center;
       }
 
       100% {
@@ -46,7 +46,7 @@
     }
 
     .sig-logo {
-      --mouse-wobble: 0;
+      --mouse-wobble: 0px;
       opacity: 0.7;
       position: absolute;
       width: inherit;
@@ -55,7 +55,7 @@
       background-repeat: no-repeat;
       background-size: 100%;
       animation-name: wobble;
-      animation-duration: 5s;
+      animation-duration: 8s;
       animation-iteration-count: infinite;
     }
     .sig-logo.red {
@@ -67,7 +67,7 @@
       left: calc(0px - var(--mouse-x, 0) * var(--mouse-wobble));
       top: calc(0px + var(--mouse-y, 0) * var(--mouse-wobble));
       background-image: url("./etteilla_logo_12.png");
-      animation-delay: -1000ms;
+      animation-delay: -3000ms;
     }
 
     .footer {
@@ -82,6 +82,15 @@
       justify-content: space-between;
       font-family: "Courier New", Courier, monospace;
       font-size: 16px;
+    }
+
+    .footer .lonely .prompt {
+      left: 5px;
+      font-size: 26px;
+      font-family: "Brush Script MT", "Brush Script Std", cursive;
+    }
+
+    .footer .lonely .phone-number {
     }
 
     .mailchimp {
@@ -168,10 +177,13 @@
   </div>
 
   <div class="footer">
-    <div class="phone-number">(234) 251-2311</div>
+    <div class="lonely">
+      <div class="prompt">lonely?</div>
+      <div class="phone-number">(234) 251-2311</div>
+    </div>
     <div class="mailchimp">
       <form>
-        <input placeholder="hi@lonely.me" />
+        <input placeholder="your email ;)" />
         <button class="mailchimp-submit">Submit</button>
       </form>
     </div>
