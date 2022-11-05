@@ -1,0 +1,179 @@
+<head>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .logo-title-container {
+      margin-top: 10px;
+      border-top: 1px solid black;
+      border-bottom: 1px solid black;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .title-logo {
+      width: 500px;
+    }
+
+    .title-logo img {
+      width: 100%;
+    }
+
+    .sig-container {
+      height: 500px;
+      width: 400px;
+      position: relative;
+    }
+
+    @keyframes wobble {
+      0% {
+        background-size: 99%;
+        background-position: center center;
+      }
+      50% {
+        background-size: 102%;
+        background-position: 49% 55%;
+      }
+
+      100% {
+        background-size: 99%;
+        background-position: center center;
+      }
+    }
+
+    .sig-logo {
+      --mouse-wobble: 0;
+      opacity: 0.7;
+      position: absolute;
+      width: inherit;
+      height: 100%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      animation-name: wobble;
+      animation-duration: 5s;
+      animation-iteration-count: infinite;
+    }
+    .sig-logo.red {
+      left: calc(0px + var(--mouse-x, 0) * var(--mouse-wobble));
+      top: calc(0px - var(--mouse-y, 0) * var(--mouse-wobble));
+      background-image: url("./etteilla_logo_11.png");
+    }
+    .sig-logo.blue {
+      left: calc(0px - var(--mouse-x, 0) * var(--mouse-wobble));
+      top: calc(0px + var(--mouse-y, 0) * var(--mouse-wobble));
+      background-image: url("./etteilla_logo_12.png");
+      animation-delay: -1000ms;
+    }
+
+    .footer {
+      align-items: center;
+      position: absolute;
+      padding: 1em;
+      bottom: 0;
+      width: 100%;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 16px;
+    }
+
+    .mailchimp {
+      width: 300px;
+    }
+
+    .mailchimp-submit {
+      background-color: white;
+      font-size: inherit;
+      font-family: inherit;
+    }
+
+    .mailchimp-submit:hover {
+      background-color: #eeeeee;
+    }
+
+    form {
+      display: flex;
+      justify-content: space-between;
+      margin-block-end: 0;
+    }
+
+    input {
+      flex: 1;
+      font-size: inherit;
+      font-family: inherit;
+      border-color: #444;
+      border-width: 1px;
+    }
+
+    input:focus {
+      outline: none;
+    }
+
+    @media (max-width: 700px) {
+      .title-logo {
+        width: 250px;
+      }
+      .sig-container {
+        width: 250px;
+      }
+    }
+  </style>
+  <script>
+    const root = document.documentElement;
+
+    let xGravityPoint = 0;
+    let yGravityPoint = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener("mousemove", (evt) => {
+      mouseX = evt.clientX;
+      mouseY = evt.clientY;
+    });
+
+    function animate() {
+      let dX = mouseX - xGravityPoint;
+      let dY = mouseY - yGravityPoint;
+
+      xGravityPoint += dX / 100;
+      yGravityPoint += dY / 100;
+
+      let offsetX = xGravityPoint / innerWidth - 0.5;
+      let offsetY = yGravityPoint / innerHeight - 0.5;
+
+      root.style.setProperty("--mouse-x", offsetX);
+      root.style.setProperty("--mouse-y", offsetY);
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</head>
+<body>
+  <div class="logo-title-container">
+    <div class="sig-container">
+      <div class="sig-logo red"></div>
+      <div class="sig-logo blue"></div>
+    </div>
+    <div class="title-logo">
+      <img src="./etteilla_logo_05.png" />
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="phone-number">(234) 251-2311</div>
+    <div class="mailchimp">
+      <form>
+        <input placeholder="hi@lonely.me" />
+        <button class="mailchimp-submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</body>
